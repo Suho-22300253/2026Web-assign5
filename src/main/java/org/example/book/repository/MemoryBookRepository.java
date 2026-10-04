@@ -1,10 +1,10 @@
 package org.example.book.repository;
 
 import org.example.book.domain.Book;
-import org.example.book.dto.ResponseBook;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
-
+@Repository
 public class MemoryBookRepository implements BookRepository {
 
     private final Map<Long, Book> repo = new LinkedHashMap<>();
@@ -14,7 +14,7 @@ public class MemoryBookRepository implements BookRepository {
     public Book save(Book book) {
         book.setId(++sequence);
         repo.put(book.getId(), book);
-        return null;
+        return book;
     }
 
     @Override
