@@ -25,4 +25,15 @@ public class BookController {
         ResponseBook responseBook = bookService.save(requestBook);
         return responseBook;
     }
+
+    @GetMapping
+    //find all의 데이터 타입은 무엇인가?
+    public List<ResponseBook> findall(){
+        return bookService.findall();
+    }
+
+    @GetMapping("{id}")
+    public ResponseBook findById(@PathVariable Long id){
+        return bookService.findById(id);
+    }
 }

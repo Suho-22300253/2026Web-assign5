@@ -4,8 +4,11 @@ import org.example.book.domain.Book;
 import org.example.book.dto.RequestBook;
 import org.example.book.dto.ResponseBook;
 import org.example.book.repository.BookRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -38,12 +41,42 @@ public class BookService {
         return responseBook;
     }
 
-    public List<Book> findall(){
-        return null;
+    public List<ResponseBook> findall(){
+        List<ResponseBook> BoookResponses = new ArrayList<>();
+        for(Book book : repository.findall()){
+            ResponseBook responseBook = new ResponseBook(
+                    book.getId(),
+                    book.getName(),
+                    book.getAuthor(),
+                    book.getPrice(),
+                    book.getCode(),
+                    book.getGenre()
+            );
+
+            BoookResponses.add(responseBook);
+        }
+        return BoookResponses;
     }
 
     public ResponseBook findById(Long id){
-        return null;
+
+            //optional은 어떻게 받아야 하는가?
+            Book book = repository.findById(id).orElseThrow(() ->
+                    new ResponseStatusException(
+                            HttpStatus.NOT_FOUND,
+                            "Student not found"
+                    ));
+            ResponseBook responseBook = new ResponseBook(
+                    book.getId(),
+                    book.getName(),
+                    book.getAuthor(),
+                    book.getPrice(),
+                    book.getCode(),
+                    book.getGenre()
+            );
+
+
+        return responseBook;
     }
 
     public ResponseBook update(RequestBook requestBook){

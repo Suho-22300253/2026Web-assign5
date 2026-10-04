@@ -25,7 +25,7 @@ public class MemoryBookRepository implements BookRepository {
         for (Map.Entry<Long, Book> entry : repo.entrySet()) {
             books.add(entry.getValue());
         }
-        return List.of();
+        return books;
     }
 
     @Override
