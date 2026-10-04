@@ -36,4 +36,10 @@ public class BookController {
     public ResponseBook findById(@PathVariable Long id){
         return bookService.findById(id);
     }
+
+    @PutMapping("{id}")
+    public ResponseBook update(@PathVariable Long id, @RequestBody RequestBook requestBook){
+        return bookService.update(id, requestBook);
+    }
+
 }
