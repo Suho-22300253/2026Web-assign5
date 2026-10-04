@@ -107,6 +107,12 @@ public class BookService {
     }
 
     public void delete(Long id) {
-
+        repository.findById(id)
+                .orElseThrow(() ->
+                        new ResponseStatusException(
+                                HttpStatus.NOT_FOUND,
+                                "Student not found"
+                        ));
+        repository.deleteById(id);
     }
 }
