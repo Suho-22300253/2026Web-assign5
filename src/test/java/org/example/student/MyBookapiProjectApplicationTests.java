@@ -1,4 +1,4 @@
-package org.example.book;
+package org.example.student;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
