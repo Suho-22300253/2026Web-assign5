@@ -65,25 +65,43 @@ public class StudentService {
     public ResponseStudent findById(Long id) {
 
         //optional은 어떻게 받아야 하는가?
-        Student book = repository.findById(id).orElseThrow(() ->
+        Student student = repository.findById(id).orElseThrow(() ->
                 new ResponseStatusException(
                         HttpStatus.NOT_FOUND,
                         "Student not found"
                 ));
-        ResponseStudent responseBook = new ResponseStudent(
-                book.getId(),
-                book.getName(),
-                book.getStudentId(),
-                book.getSemester(),
-                book.getMajor(),
-                book.getRc()
+        ResponseStudent responseStudent = new ResponseStudent(
+                student.getId(),
+                student.getName(),
+                student.getStudentId(),
+                student.getSemester(),
+                student.getMajor(),
+                student.getRc()
         );
 
 
-        return responseBook;
+        return responseStudent;
     }
 
     public ResponseStudent findByName(String name) {
+        Student student = repository.findByName(name);
+
+        if(student == null){
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND
+            );
+        }
+        ResponseStudent responseStudent = new ResponseStudent(
+                student.getId(),
+                student.getName(),
+                student.getStudentId(),
+                student.getSemester(),
+                student.getMajor(),
+                student.getRc()
+        );
+
+
+        return responseStudent;
     }
 
     public ResponseStudent update(Long id, RequestStudent requestBook) {

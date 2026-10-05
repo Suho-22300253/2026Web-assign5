@@ -31,20 +31,20 @@ public class StudentController {
         return studentService.findall();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseStudent findById(@PathVariable Long id){
         return studentService.findById(id);
     }
 
-    @GetMapping("{name}")
+    @GetMapping("name/{name}") // 둘 다 같은 패턴이라 충돌가능 {id}와 {name}이라는 변수 이름은 URL을 구분하는 기준이 아니다.
     public ResponseStudent findByName(@PathVariable String name){ return studentService.findByName(name);}
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public ResponseStudent update(@PathVariable Long id, @RequestBody RequestStudent requestStudent){
         return studentService.update(id, requestStudent);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id){
         studentService.delete(id);

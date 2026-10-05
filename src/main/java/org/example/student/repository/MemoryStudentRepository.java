@@ -1,6 +1,7 @@
 package org.example.student.repository;
 
 import org.example.student.domain.Student;
+import org.example.student.dto.ResponseStudent;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
@@ -33,6 +34,17 @@ public class MemoryStudentRepository implements StudentRepository {
 
         //ofNillable 함수의 역할:
         return Optional.ofNullable(repo.get(id));
+    }
+
+    public Student findByName(String name){
+
+        for (Student student : repo.values()) {
+
+            if (student.getName().equals(name)) {
+                return student;
+            }
+        }
+        return null;// Optional.ofNullable(repo.get(name)); - map의 키 값이 Long이기 떄문에 불가함
     }
 
     @Override
