@@ -1,25 +1,28 @@
 ## 실행 결과
-![create.png](captures/create.png)
+### local
+![create-local.png](captures/create-local.png)
+![findALL-local.png](captures/findALL-local.png)
+![findByName-local.png](captures/findByName-local.png)
+![findbyid-local.png](captures/findbyid-local.png)
+![400 BAD REQUEST-local.png](captures/400%20BAD%20REQUEST-local.png)
+![delete-local.png](captures/delete-local.png)
+![update-local.png](captures/update-local.png)
 
-![findALL.png](captures/findALL.png)
-
-![findByName.png](captures/findByName.png)
-
-![findbyid.png](captures/findbyid.png)
-
-![400 BAD REQUEST.png](captures/400%20BAD%20REQUEST.png)
-
-![update.png](captures/update.png)
-
-![delete.png](captures/delete.png)
-
+### 배포 후
+![create-render.png](captures/create-render.png)
+![findALL-render.png](captures/findALL-render.png)
+![update - render.png](captures/update%20-%20render.png)
+![findById-render.png](captures/findById-render.png)
+![400Bad Request - render.png](captures/400Bad%20Request%20-%20render.png)
+![update - render.png](captures/update%20-%20render.png)
+![delete-render.png](captures/delete-render.png)
 # Student Management REST API
 
 ## ① 프로젝트 소개
 
 학생 정보를 관리하는 Spring Boot REST CRUD API이다.
 
-관리 데이터: `id`, `studentId`, `name`, `semester`, `major`, `rc`, `id`는
+관리 데이터: `id`, `studentId`, `name`, `semester`, `major`, `rc`, `id`
 
 ### 프로젝트 구조
 
@@ -92,11 +95,11 @@ http://localhost:1010/api/students 주소로 브라우저 이동
 | --- | --- |
 | IDE | IntelliJ IDEA |
 | JDK | Java 21 |
-| Spring Boot | `[버전 입력]` |
-| Build Tool | Gradle `[버전 입력]` |
+| Spring Boot | 4.1.1 |
+| Build Tool | Gradle 9.7.1 |
 | 데이터 저장 | LinkedHashMap |
 | API Test | Postman |
-| 배포 | Docker + `[배포 환경]` |
+| 배포 | Docker + Render |
 
 ### Dependency
 
