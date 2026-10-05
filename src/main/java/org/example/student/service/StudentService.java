@@ -146,8 +146,8 @@ public class StudentService {
 
 
     private void check (RequestStudent request){ // 필드가 빠진 경우 기본적으로 null 이나 0 이 들어가지기 때문에 이러한 검사가 필요하다.
-        if(request.name() == null){
-            //코드 해석 필요함
+        if(request.name() == null || request.name().isBlank()){ // "" 도 null 이기 떄문에 isBlank로 "" 를 잡는다.
+
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST
             );
@@ -158,20 +158,20 @@ public class StudentService {
                     HttpStatus.BAD_REQUEST
             );
         }
-        if(request.major() == null){
-            //코드 해석 필요함
+        if(request.major() == null || request.major().isBlank()){
+
             throw new ResponseStatusException( // null 일 경우 예외 발생
                     HttpStatus.BAD_REQUEST
             );
         }
         if(request.semester() < 1){ // primitive int라서 기본값 0이 들어올 수 있기 때문에 누락도 잡아낸다.
-            //코드 해석 필요함
+
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST
             );
         }
-        if(request.rc() == null){
-            //코드 해석 필요함
+        if(request.rc() == null || request.rc().isBlank()){
+
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST
             );
