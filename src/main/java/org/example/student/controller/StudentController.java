@@ -36,6 +36,9 @@ public class StudentController {
         return studentService.findById(id);
     }
 
+    @GetMapping("{name}")
+    public ResponseStudent findByName(@PathVariable String name){ return studentService.findByName(name);}
+
     @PutMapping("{id}")
     public ResponseStudent update(@PathVariable Long id, @RequestBody RequestStudent requestStudent){
         return studentService.update(id, requestStudent);

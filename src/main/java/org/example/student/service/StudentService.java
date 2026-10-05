@@ -23,6 +23,8 @@ public class StudentService {
 
     public ResponseStudent save(RequestStudent requestBook) {
 
+        check(requestBook);
+
         Student book = new Student();
         book.setName(requestBook.name());
         book.setStudentId(requestBook.studentId());
@@ -81,7 +83,12 @@ public class StudentService {
         return responseBook;
     }
 
+    public ResponseStudent findByName(String name) {
+    }
+
     public ResponseStudent update(Long id, RequestStudent requestBook) {
+
+        check(requestBook);
 
         Student student = repository.findById(id)
                 .orElseThrow(() ->
@@ -117,4 +124,42 @@ public class StudentService {
                         ));
         repository.deleteById(id);
     }
+
+
+
+    private void check (RequestStudent request){ // 필드가 빠진 경우 기본적으로 null 이나 0 이 들어가지기 때문에 이러한 검사가 필요하다.
+        if(request.name() == null){
+            //코드 해석 필요함
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST
+            );
+        }
+
+        if(request.studentId() == null || !request.studentId().matches("\\d{8}")){ // 정확히 8자리 숫자여야 한다
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST
+            );
+        }
+        if(request.major() == null){
+            //코드 해석 필요함
+            throw new ResponseStatusException( // null 일 경우 예외 발생
+                    HttpStatus.BAD_REQUEST
+            );
+        }
+        if(request.semester() < 1){ // primitive int라서 기본값 0이 들어올 수 있기 때문에 누락도 잡아낸다.
+            //코드 해석 필요함
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST
+            );
+        }
+        if(request.rc() == null){
+            //코드 해석 필요함
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST
+            );
+        }
+
+    }
+
+
 }
