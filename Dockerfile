@@ -11,11 +11,11 @@ COPY src ./src
 RUN ./gradlew clean bootJar --no-daemon
 
 # 2단계: 실행
-FROM eclipse-temurin:17-jre
+FROM eclipse-temurin:21-jre
 WORKDIR /app
 
 COPY --from=build /app/build/libs/*.jar app.jar
 
-EXPOSE 8093
+EXPOSE 1010
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
