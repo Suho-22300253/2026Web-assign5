@@ -81,9 +81,9 @@ http://localhost:1010/api/students 주소로 브라우저 이동
 
 ### URL
 
-- Organization Repository: `[입력]`
-- Personal Repository: `[입력]`
-- 배포 URL: `[입력]`
+- Organization Repository: https://github.com/2026-2-WebService/assign05-c01-22300253.git
+- Personal Repository: https://github.com/Suho-22300253/2026Web-assign5.git
+- 배포 URL: https://two026web-assign5.onrender.com
 
 
 ## ② 개발환경 및 Dependency
@@ -248,7 +248,25 @@ Optional.ofNullable(repo.get(id)) repo.get(id)의 결과가 존재하면 Optiona
 
 반대로 해당 ID가 존재하지 않아 repo.get(id)가 null을 반환하면 Optional.empty() 가 반환된다.
 
-### Q3. HttpStatus 를 사용하는 이유
+### Q3. HttpStatus를 사용하는 이유는 무엇인가?
+
+HttpStatus는 서버가 요청을 처리한 결과를 HTTP 상태 코드로 Client에게 전달하기 위해 사용한다.
+
+예를 들어 정상적으로 데이터를 등록한 경우에는 `CREATED(201)`,
+존재하지 않는 데이터를 조회한 경우에는 `NOT_FOUND(404)`,
+잘못된 입력값을 전달한 경우에는 `BAD_REQUEST(400)`을 사용할 수 있다.
+
+`ResponseStatusException(HttpStatus.NOT_FOUND)`
+
+을 발생시켜 `404 Not Found`를 반환하도록 하였다.
+
+또한 `StudentService.check()`에서는 잘못된 학생 정보가 들어오면
+
+`ResponseStatusException(HttpStatus.BAD_REQUEST)`
+
+을 발생시켜 `400 Bad Request`를 반환하도록 구현하였다.
+
+이를 통해 단순히 오류를 발생시키는 것뿐만 아니라 Client에게 요청 처리 결과를 HTTP 상태 코드로 명확하게 전달할 수 있다는 것을 이해하였다.
 
 
 ### Q4. ID 검색과 이름 검색은 Repository에서 왜 구현 방식이 다른가?
@@ -355,7 +373,7 @@ POST /api/students
 GET /api/students/name/{name}
 ```
 
-배포 URL: `[입력]`
+배포 URL: - https://two026web-assign5.onrender.com
 
 
 ## ⑦ Weekly Report
